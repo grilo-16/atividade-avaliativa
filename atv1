@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+// Função para calcular f(x)
+double calcularFx(double x) {
+    return x * x - 3 * x + 2;
+}
+
+int main() {
+    double x, resultado;
+
+    // Solicitar ao usuário para inserir o valor de x
+    printf("Digite o valor de x: ");
+    scanf("%lf", &x);
+
+    // Chamar a função calcularFx para calcular f(x)
+    resultado = calcularFx(x);
+
+    // Imprimir o resultado
+    printf("O valor de f(%.2lf) é %.2lf\n", x, resultado);
+
+    return 0;
+}
