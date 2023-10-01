@@ -1,0 +1,51 @@
+ #include <stdio.h>
+
+int main() {
+    double salario, total_salario = 0.0;
+    int num_filhos, total_filhos = 0;
+    int num_pessoas = 0, num_pessoas_salario_ate_100 = 0;
+    double maior_salario = 0.0;
+
+    do {
+        // Solicitar ao usuário para inserir o salário (com valor negativo para sair)
+        printf("Digite o salário (ou um valor negativo para sair): ");
+        scanf("%lf", &salario);
+
+        if (salario >= 0) {
+            // Solicitar ao usuário para inserir o número de filhos
+            printf("Digite o número de filhos: ");
+            scanf("%d", &num_filhos);
+
+            // Atualizar os totais
+            total_salario += salario;
+            total_filhos += num_filhos;
+
+            // Verificar o maior salário
+            if (salario > maior_salario) {
+                maior_salario = salario;
+            }
+
+            // Verificar se o salário é até R$100,00
+            if (salario <= 100.0) {
+                num_pessoas_salario_ate_100++;
+            }
+
+            num_pessoas++;
+        }
+    } while (salario >= 0);
+
+    // Calcular as médias
+    double media_salario = total_salario / num_pessoas;
+    double media_filhos = (double)total_filhos / num_pessoas;
+
+    // Calcular o percentual de pessoas com salário até R$100,00
+    double percentual_salario_ate_100 = (double)num_pessoas_salario_ate_100 / num_pessoas * 100;
+
+    // Imprimir os resultados
+    printf("a) Média do salário da população: %.2lf\n", media_salario);
+    printf("b) Média do número de filhos: %.2lf\n", media_filhos);
+    printf("c) Maior salário: %.2lf\n", maior_salario);
+    printf("d) Percentual de pessoas com salário até R$100,00: %.2lf%%\n", percentual_salario_ate_100);
+
+    return 0;
+}
