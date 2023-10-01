@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int numero_alunos = 30;
+    double notas1[30], notas2[30], notas3[30], medias_ponderadas[30];
+
+    // Solicitar ao usuário para inserir as notas de cada aluno
+    for (int i = 0; i < numero_alunos; i++) {
+        printf("Digite as notas do aluno %d (n1 n2 n3): ", i + 1);
+        scanf("%lf %lf %lf", &notas1[i], &notas2[i], &notas3[i]);
+
+        // Calcular a média ponderada
+        medias_ponderadas[i] = (notas1[i] * 2 + notas2[i] * 4 + notas3[i] * 3) / 10;
+    }
+
+    // Imprimir as médias ponderadas
+    printf("Médias Ponderadas dos Alunos:\n");
+    for (int i = 0; i < numero_alunos; i++) {
+        printf("Aluno %d: %.2lf\n", i + 1, medias_ponderadas[i]);
+    }
+
+    return 0;
+}
