@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int codigo, veiculos, acidentes;
+    char estado[3];
+    int maior_acidente = -1, menor_acidente = -1;
+    char cidade_maior_acidente[50], cidade_menor_acidente[50];
+    int total_veiculos = 0, total_acidentes_rs = 0;
+    int num_cidades = 0, num_cidades_rs = 0;
+
+    printf("Informe os dados das cidades (ou digite 0 para encerrar):\n");
+
+    while (1) {
+        printf("Código da cidade: ");
+        scanf("%d", &codigo);
+
+        if (codigo == 0) {
+            break;
+        }
+
+        printf("Estado (sigla): ");
+        scanf("%s", estado);
+
+        printf("Número de veículos de passeio em 1992: ");
+        scanf("%d", &veiculos);
+
+        printf("Número de acidentes de trânsito com vítimas em 1992: ");
+        scanf("%d", &acidentes);
+
+        total_veiculos += veiculos;
+        num_cidades++;
+
+        if (strcmp(estado, "RS") == 0) {
+            total_acidentes_rs += acidentes;
+            num_cidades_rs++;
+        }
+
+        if (maior_acidente == -1 || acidentes > maior_acidente) {
+            maior_acidente = acidentes;
+            strcpy(cidade_maior_acidente, "Cidade: ");
+            strcat(cidade_maior_acidente, estado);
+            strcat(cidade_maior_acidente, " - ");
+            strcat(cidade_maior_acidente, cidade_maior_acidente);
+        }
+
+        if (menor_acidente == -1 || acidentes < menor_acidente) {
+            menor_acidente = acidentes;
+            strcpy(cidade_menor_acidente, "Cidade: ");
+            strcat(cidade_menor_acidente, estado);
+            strcat(cidade_menor_acidente, " - ");
+            strcat(cidade_menor_acidente, cidade_menor_acidente);
+        }
+    }
+
+    if (num_cidades == 0) {
+        printf("Nenhuma cidade informada.\n");
+    } else {
+        printf("a) Maior índice de acidentes de trânsito: %d (pertence a %s)\n", maior_acidente, cidade_maior_acidente);
+        printf("   Menor índice de acidentes de trânsito: %d (pertence a %s)\n", menor_acidente, cidade_menor_acidente);
+        printf("b) Média de veículos nas cidades brasileiras: %.2lf\n", (double)total_veiculos / num_cidades);
+
+        if (num_cidades_rs > 0) {
+            printf("c) Média de acidentes com vítimas entre as cidades do Rio Grande do Sul: %.2lf\n", (double)total_acidentes_rs / num_cidades_rs);
+        } else {
+            printf("c) Não há cidades do Rio Grande do Sul na amostra.\n");
+        }
+    }
+
+    return 0;
+}
