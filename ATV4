@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main() {
+    double A, B, C;
+    double maior, menor, meio;
+
+    // Solicitar ao usuário para inserir os valores de A, B e C
+    printf("Digite o valor de A: ");
+    scanf("%lf", &A);
+
+    printf("Digite o valor de B: ");
+    scanf("%lf", &B);
+
+    printf("Digite o valor de C: ");
+    scanf("%lf", &C);
+
+    // Encontrar o maior, o menor e o valor do meio entre A, B e C
+    if (A >= B && A >= C) {
+        maior = A;
+        meio = (B >= C) ? B : C;
+        menor = (B <= C) ? B : C;
+    } else if (B >= A && B >= C) {
+        maior = B;
+        meio = (A >= C) ? A : C;
+        menor = (A <= C) ? A : C;
+    } else {
+        maior = C;
+        meio = (A >= B) ? A : B;
+        menor = (A <= B) ? A : B;
+    }
+
+    // Verificar se os valores podem formar um triângulo
+    if (maior < (meio + menor)) {
+        if (maior * maior == (meio * meio + menor * menor)) {
+            printf("Os lados formam um triângulo retângulo.\n");
+        } else if (maior * maior > (meio * meio + menor * menor)) {
+            printf("Os lados formam um triângulo obtusângulo.\n");
+        } else {
+            printf("Os lados formam um triângulo acutângulo.\n");
+        }
+    } else {
+        printf("Os lados fornecidos não formam um triângulo.\n");
+    }
+
+    return 0;
+}
